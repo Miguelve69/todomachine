@@ -1,10 +1,10 @@
 import React from "react";
-import { TodoContext } from "../TodoContext";
+
 import './todoForm.css';
 
-function TodoForm() {
+function TodoForm({addTodo,setOpenModal}) {
     const [newTodoValue,setNewTodoValue] = React.useState('')
-    const {addTodo,setOpenModal} = React.useContext(TodoContext)
+    
     
     const onCancel = () => {
         setOpenModal(false)
@@ -22,9 +22,9 @@ function TodoForm() {
 
     return(
         <form onSubmit={onAdd}>
-            <label>Escribe tu nueva tarea</label>
+            
             <textarea 
-                placeholder="guarda tu tarea"
+                placeholder="Escribe tu nueva tarea"
                 value={newTodoValue}
                 onChange={onChange}           />
             <div className="TodoForm-buttonContainer">
