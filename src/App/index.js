@@ -31,7 +31,8 @@ function App() {
     completedTodos,
     searchValue, 
     setSearchValue,
-    addTodo,    
+    addTodo,  
+    
   } = useTodos();
 
   return (
@@ -46,22 +47,31 @@ function App() {
               setSearchValue={setSearchValue}
             />
           </TodoHeader>
-    
-              <TodoList>
-                  {error && <TodosError error={error} />}
-                  {loading && <TodosLoading />}
-                  {(!loading && !searchedTodos.length) && <EmptyTodos />}
-          
-                  {searchedTodos.map(todo => (
-                    <TodoItem 
+
+              <TodoList
+                error={error}
+                loading={loading}
+                searchedTodos={searchedTodos}
+                searchText={searchValue}
+                totalTodos={totalTodos}
+                onError={() => <TodosError />}
+                onLoading={() => <TodosLoading />}
+                onEmptyTodos={() => <EmptyTodos />}
+                onEmptySearchResults={(searchText) => <p>No hay resultados para {searchText}</p>}
+                render={todo => (
+                  <TodoItem 
+                      
                       key={todo.text} 
-                      text={todo.text} 
+                      text={todo.text}
+                      fechaSeleccionada={todo.fechaSeleccionada}
                       completed={todo.completed}
                       onComplete={() => completeTodo(todo.text)}
                       onDelete={() => deleteTodo(todo.text)}
-                    />
-                  ))}
-            </TodoList>        
+                  />
+                )}
+              />
+    
+                    
             {!!openModal && (
               <Modal>
                   <TodoForm 

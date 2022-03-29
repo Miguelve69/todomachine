@@ -30,11 +30,13 @@ function useTodos() {
           
       }
     
-      const addTodo =(text) => {            
+      const addTodo =(text,fechaSeleccionada) => {  
+             
         const newTodos =[...todos];
         newTodos.push({
           completed: false,
           text,
+          fechaSeleccionada,
         })
         saveTodos(newTodos);    
       }
@@ -78,6 +80,7 @@ function useTodos() {
             openModal,
             setOpenModal,
             addTodo,
+            
         }
 }
 

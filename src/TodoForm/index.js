@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import {DatePicker} from '@material-ui/pickers';
+
 
 import './todoForm.css';
 
 function TodoForm({addTodo,setOpenModal}) {
     const [newTodoValue,setNewTodoValue] = React.useState('')
+    const [fechaSeleccionada,setfechaSeleccionada] = useState(new Date());
     
     
     const onCancel = () => {
@@ -12,7 +15,8 @@ function TodoForm({addTodo,setOpenModal}) {
 
     const onAdd = (event) => {
         event.preventDefault();
-        addTodo(newTodoValue)
+        console.log(fechaSeleccionada);
+        addTodo(newTodoValue,fechaSeleccionada)
         setOpenModal(false)
     }
 
@@ -22,7 +26,9 @@ function TodoForm({addTodo,setOpenModal}) {
 
     return(
         <form onSubmit={onAdd}>
-            
+             <DatePicker
+                value={fechaSeleccionada}
+                onChange={setfechaSeleccionada} />
             <textarea 
                 placeholder="Escribe tu nueva tarea"
                 value={newTodoValue}
