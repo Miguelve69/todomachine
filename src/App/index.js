@@ -15,6 +15,7 @@ import { TodosError } from "../TodosError";
 import { TodosLoading } from "../TodosLoading";
 import { EmptyTodos } from "../EmptyTodos";
 import { TodoHeader } from "../TodoHeader";
+import { TodoOrdenar } from '../TodoOrdenar';
 
 
 
@@ -32,6 +33,8 @@ function App() {
     searchValue, 
     setSearchValue,
     addTodo,  
+    ordenar,
+    setOrdenar,
     
   } = useTodos();
 
@@ -41,6 +44,10 @@ function App() {
             <TodoCounter
               totalTodos={totalTodos}
               completedTodos={completedTodos}
+            />
+            <TodoOrdenar
+              ordenar={ordenar}
+              setOrdenar={setOrdenar}
             />
             <TodoSearch 
               searchValue={searchValue}
@@ -64,6 +71,9 @@ function App() {
                       key={todo.text} 
                       text={todo.text}
                       fechaSeleccionada={todo.fechaSeleccionada}
+                      prioridad={todo.prioridad}
+                      nota={todo.nota}
+                      fechaDate={todo.fechaDate}
                       completed={todo.completed}
                       onComplete={() => completeTodo(todo.text)}
                       onDelete={() => deleteTodo(todo.text)}
