@@ -2,10 +2,21 @@ import React from "react";
 import './TodoItem.css'
 
 function TodoItem(props) {
-
+    
     return(
         <li className="TodoItem">
-            <table>
+           <table className="m-5 w-5/6 mx-auto">
+            <thead className="text-center text-gray-300 border-b border-t border-gray-300">
+              <tr>
+                <th className="px-4 py-3">Hecho</th>
+                <th className="px-4 py-3">Prioridad</th>
+                <th className="px-4 py-3">Fecha</th>
+                <th className="px-4 py-3">Tarea</th>
+                <th className="px-4 py-3">Nota</th>
+                <th className="px-4 py-3">Fecha Date</th>
+              </tr>
+            </thead>
+            <tbody className="font-normal text-center">
             <tr>                
                 <td>
                     <span 
@@ -15,12 +26,32 @@ function TodoItem(props) {
 
             √
             </span>
+            </td>           
+            <td>
+            <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+                {props.prioridad}               
+            </p>
+            </td> 
+            <td>
+            <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+                {props.fechaSeleccionada}               
+            </p>
+            </td> 
+            <td>
+            <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+                {props.text}               
+            </p>
             </td>
             <td>
             <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
-                {props.text}
+                {props.nota}               
             </p>
-            </td>
+            </td> 
+            <td>
+            <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+                {props.fechaDate}               
+            </p>
+            </td> 
             <td>
             <span 
                 className="Icon Icon-delete"
@@ -30,6 +61,7 @@ function TodoItem(props) {
             </span>
             </td>
             </tr>
+            </tbody>
             </table>
         </li>
     )

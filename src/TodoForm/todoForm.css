@@ -71,3 +71,11 @@ textarea:focus {
     background: #61DAFA;
     width: 120px;
 }
+
+input {
+       color: #1E1E1F;
+}
+
+div {
+    color: #1E1E1F;
+}
