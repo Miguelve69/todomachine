@@ -16,6 +16,8 @@ import { TodosLoading } from "../TodosLoading";
 import { EmptyTodos } from "../EmptyTodos";
 import { TodoHeader } from "../TodoHeader";
 import { TodoOrdenar } from '../TodoOrdenar';
+import { Calendar } from '../Calendar';
+
 
 
 
@@ -41,18 +43,24 @@ function App() {
   return (
     <React.Fragment>
           <TodoHeader>
+            
+          <TodoSearch 
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+            />
+
+<TodoOrdenar
+              ordenar={ordenar}
+              setOrdenar={setOrdenar}
+            />
+            <Calendar/>
+           
             <TodoCounter
               totalTodos={totalTodos}
               completedTodos={completedTodos}
             />
-            <TodoOrdenar
-              ordenar={ordenar}
-              setOrdenar={setOrdenar}
-            />
-            <TodoSearch 
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-            />
+           
+            
           </TodoHeader>
 
               <TodoList
@@ -80,7 +88,8 @@ function App() {
                   />
                 )}
               />
-    
+
+            
                     
             {!!openModal && (
               <Modal>

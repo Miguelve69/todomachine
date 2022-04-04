@@ -11,13 +11,16 @@ function TodoSearch({searchValue, setSearchValue, loading}) {
     }
 
     return(
-        <input 
-        className="TodoSearch" 
-        placeholder="Buscar ......" 
-        value={searchValue}
-        onChange={onSearchValueChange}
-        disabled={loading}
-        />        
+        <div >
+            <input 
+            className="TodoSearch" 
+            placeholder="Buscar ......" 
+            value={searchValue}
+            onChange={onSearchValueChange}
+            disabled={loading}
+            autoFocus
+            />    
+        </div>    
     )
 }
 

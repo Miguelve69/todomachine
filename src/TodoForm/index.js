@@ -35,10 +35,14 @@ function TodoForm({addTodo,setOpenModal}) {
           const dd= fechaSeleccionada.getDate()
           const dia= dd < 10 ? '0' + dd : dd;
           const ano= fechaSeleccionada.getFullYear()
-          
-          const fechaDate= ano+mes+dia
-        
 
+          const anoS= ''+ ano
+          const mesS= ''+ mes
+          const diaS= ''+ dia
+          
+          const fechaDate= anoS+mesS+diaS
+        
+          console.log('esta es la fecha guardada: ',anoS, mesS, diaS)
         
          console.log('fecha numero: ', fechaDate)       
         addTodo(newTodoValue,fecha,prioridad,nota,fechaDate)

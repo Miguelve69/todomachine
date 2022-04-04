@@ -15,7 +15,7 @@ function useTodos() {
       } = useLocalStorage('TODOS_V1',[]);
       const [searchValue, setSearchValue] = React.useState('');
       const [openModal, setOpenModal] = React.useState(false);
-      const [ordenar,setOrdenar] = useState('tarea');
+      const [ordenar,setOrdenar] = useState('hoy');
       const completedTodos= todos.filter(todo => !!todo.completed).length;
       const totalTodos = todos.length;
       
@@ -52,6 +52,12 @@ function useTodos() {
         case 'hoy':
           searchedTodos = todos.filter(todo => {
             const todofuturas = (todo.fechaDate = fechaHoy)
+            return todofuturas
+        })
+        break
+        case 'pendientes':
+          searchedTodos = todos.filter(todo => {
+            const todofuturas = (!todo.completed)
             return todofuturas
         })
           break
