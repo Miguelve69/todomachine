@@ -1,7 +1,7 @@
 import React from "react";
 import './TodoItem.css'
 
-function TodoItem(props) {
+function Todo2(props) {
     
     return(
 
@@ -75,4 +75,4 @@ function TodoItem(props) {
     )
 }
 
-export { TodoItem };
+export { Todo2 };
