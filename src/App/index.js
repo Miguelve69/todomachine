@@ -16,6 +16,14 @@ import { TodosLoading } from "../TodosLoading";
 import { EmptyTodos } from "../EmptyTodos";
 import { TodoHeader } from "../TodoHeader";
 import { TodoOrdenar } from '../TodoOrdenar';
+import { TodoPrint } from '../TodoPrint'
+
+import { PrinterButton } from '../PrinterButton'
+
+
+import { Calendario } from '../Calendar';
+import { BotonesPrint } from '../BotonesPrint';
+ 
 
 
 
@@ -28,6 +36,8 @@ function App() {
     deleteTodo,
     openModal,
     setOpenModal,
+    openModalPrint,
+    setOpenModalPrint,
     totalTodos, 
     completedTodos,
     searchValue, 
@@ -35,71 +45,135 @@ function App() {
     addTodo,  
     ordenar,
     setOrdenar,
-    
+   
+   
   } = useTodos();
 
-  return (
-    <React.Fragment>
-          <TodoHeader>
-            <TodoCounter
-              totalTodos={totalTodos}
-              completedTodos={completedTodos}
-            />
-            <TodoOrdenar
-              ordenar={ordenar}
-              setOrdenar={setOrdenar}
-            />
-            <TodoSearch 
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-            />
-          </TodoHeader>
+ 
+      return (
+        <React.Fragment>
+              <TodoHeader>
+                <Calendario/>
+              <TodoSearch 
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                />
 
-              <TodoList
-                error={error}
-                loading={loading}
-                searchedTodos={searchedTodos}
-                searchText={searchValue}
-                totalTodos={totalTodos}
-                onError={() => <TodosError />}
-                onLoading={() => <TodosLoading />}
-                onEmptyTodos={() => <EmptyTodos />}
-                onEmptySearchResults={(searchText) => <p>No hay resultados para {searchText}</p>}
-                render={todo => (
-                  <TodoItem 
-                      
-                      key={todo.text} 
-                      text={todo.text}
-                      fechaSeleccionada={todo.fechaSeleccionada}
-                      prioridad={todo.prioridad}
-                      nota={todo.nota}
-                      fechaDate={todo.fechaDate}
-                      completed={todo.completed}
-                      onComplete={() => completeTodo(todo.text)}
-                      onDelete={() => deleteTodo(todo.text)}
-                  />
-                )}
-              />
-    
-                    
-            {!!openModal && (
-              <Modal>
-                  <TodoForm 
-                    addTodo={addTodo}
-                    setOpenModal={setOpenModal}
-                  >
-
-                  </TodoForm>          
+    <TodoOrdenar
+                  ordenar={ordenar}
+                  setOrdenar={setOrdenar}
+                />
+               
+              
+                <TodoCounter
+                  totalTodos={totalTodos}
+                  completedTodos={completedTodos}
                   
-              </Modal>
-            )}
-      
-      <CreateTodoButton
-        setOpenModal={setOpenModal}
-      />
-    </React.Fragment>
-);
+                />                     
+
+                <PrinterButton
+                  setOpenModalPrint={setOpenModalPrint}
+                  
+                  />                      
+                
+              </TodoHeader>
+
+                  <TodoList
+                    error={error}
+                    loading={loading}
+                    searchedTodos={searchedTodos}
+                    searchText={searchValue}
+                    totalTodos={totalTodos}
+                   
+                    onError={() => <TodosError />}
+                    onLoading={() => <TodosLoading />}
+                    onEmptyTodos={() => <EmptyTodos />}
+                    onEmptySearchResults={(searchText) => <p>No hay resultados para <h2>{searchText}</h2></p>}
+                   
+                    
+                    render={todo => (
+                      
+                      <TodoItem 
+                          
+                          key={todo.text} 
+                          text={todo.text}
+                          fechaSeleccionada={todo.fechaSeleccionada}
+                          prioridad={todo.prioridad}
+                          nota={todo.nota}
+                          fechaDate={todo.fechaDate}
+                          completed={todo.completed}
+                          onComplete={() => completeTodo(todo.text)}
+                          onDelete={() => deleteTodo(todo.text)}
+                      />
+                    )}
+                  />
+
+                
+                        
+                {!!openModal && (
+                  <Modal>
+                      <TodoForm 
+                        addTodo={addTodo}
+                        setOpenModal={setOpenModal}
+                        
+                      >
+
+                      </TodoForm>          
+                      
+                  </Modal>
+                )}
+
+                {!!openModalPrint && (
+                  <Modal>
+                       
+                      <TodoList
+                          error={error}
+                          loading={loading}
+                          searchedTodos={searchedTodos}
+                          searchText={searchValue}
+                          totalTodos={totalTodos}
+                        
+                          onError={() => <TodosError />}
+                          onLoading={() => <TodosLoading />}
+                          onEmptyTodos={() => <EmptyTodos />}
+                          onEmptySearchResults={(searchText) => <p>No hay resultados para <h2>{searchText}</h2></p>}
+                        
+                          
+                          render={todo => (
+
+
+                            <TodoPrint 
+                                                        
+                                key={todo.text} 
+                                text={todo.text}
+                                fechaSeleccionada={todo.fechaSeleccionada}
+                                prioridad={todo.prioridad}
+                                nota={todo.nota}
+                                fechaDate={todo.fechaDate}
+                                completed={todo.completed}
+                                onComplete={() => completeTodo(todo.text)}
+                                onDelete={() => deleteTodo(todo.text)}
+                            />
+                            
+                          )}
+                        />        
+                        <BotonesPrint
+                            setOpenModalPrint={setOpenModalPrint}
+                        />
+                  </Modal>
+                )}
+
+               
+          
+          <CreateTodoButton
+            setOpenModal={setOpenModal}
+           
+          />
+        </React.Fragment>
   
+);
+
+                      
 }
 
 export default App;
