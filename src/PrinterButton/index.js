@@ -4,7 +4,7 @@ import './PrinterButton.css';
 function PrinterButton(props) {
 
     const onClickButton=() => {
-       
+        props.setOpenModalPrint(prevState => !prevState);
     }
 
     

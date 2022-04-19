@@ -16,12 +16,13 @@ import { TodosLoading } from "../TodosLoading";
 import { EmptyTodos } from "../EmptyTodos";
 import { TodoHeader } from "../TodoHeader";
 import { TodoOrdenar } from '../TodoOrdenar';
-
+import { TodoPrint } from '../TodoPrint'
 
 import { PrinterButton } from '../PrinterButton'
 
 
 import { Calendario } from '../Calendar';
+import { BotonesPrint } from '../BotonesPrint';
  
 
 
@@ -35,7 +36,7 @@ function App() {
     deleteTodo,
     openModal,
     setOpenModal,
-   
+    openModalPrint,
     setOpenModalPrint,
     totalTodos, 
     completedTodos,
@@ -119,6 +120,46 @@ function App() {
 
                       </TodoForm>          
                       
+                  </Modal>
+                )}
+
+                {!!openModalPrint && (
+                  <Modal>
+                       
+                      <TodoList
+                          error={error}
+                          loading={loading}
+                          searchedTodos={searchedTodos}
+                          searchText={searchValue}
+                          totalTodos={totalTodos}
+                        
+                          onError={() => <TodosError />}
+                          onLoading={() => <TodosLoading />}
+                          onEmptyTodos={() => <EmptyTodos />}
+                          onEmptySearchResults={(searchText) => <p>No hay resultados para <h2>{searchText}</h2></p>}
+                        
+                          
+                          render={todo => (
+
+
+                            <TodoPrint 
+                                                        
+                                key={todo.text} 
+                                text={todo.text}
+                                fechaSeleccionada={todo.fechaSeleccionada}
+                                prioridad={todo.prioridad}
+                                nota={todo.nota}
+                                fechaDate={todo.fechaDate}
+                                completed={todo.completed}
+                                onComplete={() => completeTodo(todo.text)}
+                                onDelete={() => deleteTodo(todo.text)}
+                            />
+                            
+                          )}
+                        />        
+                        <BotonesPrint
+                            setOpenModalPrint={setOpenModalPrint}
+                        />
                   </Modal>
                 )}
 

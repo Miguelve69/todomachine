@@ -1,10 +1,11 @@
 import React from "react";
 
 
-function BotonesPrint(props) {
+function BotonesPrint({setOpenModalPrint}) {
+   
 
-    const onClickButton=() => {
-        props.openModalPrint(prevState => !prevState);
+    const onCancel = () => {
+        setOpenModalPrint(false)
     }
 
     return(
@@ -17,7 +18,7 @@ function BotonesPrint(props) {
         </button>
         <button 
         
-        onClick={onClickButton}
+        onClick={onCancel}
         >
             Cancelar
         </button>
