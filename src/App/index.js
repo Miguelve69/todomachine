@@ -101,6 +101,8 @@ function App() {
                           prioridad={todo.prioridad}
                           nota={todo.nota}
                           fechaDate={todo.fechaDate}
+                          diaSemana = {todo.diaSemana}
+                          diffecha= {todo.diffecha}
                           completed={todo.completed}
                           onComplete={() => completeTodo(todo.text)}
                           onDelete={() => deleteTodo(todo.text)}
@@ -150,6 +152,8 @@ function App() {
                                 prioridad={todo.prioridad}
                                 nota={todo.nota}
                                 fechaDate={todo.fechaDate}
+                                diaSemana={todo.diaSemana}
+                                diffecha={todo.diffecha}
                                 completed={todo.completed}
                                 onComplete={() => completeTodo(todo.text)}
                                 onDelete={() => deleteTodo(todo.text)}

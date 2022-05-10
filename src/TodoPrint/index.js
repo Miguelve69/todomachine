@@ -35,10 +35,14 @@ function TodoPrint(props) {
             </td> 
             <td>
             <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
-                {props.fechaDate}               
+                {props.diaSemana}               
             </p>
             </td>             
-           
+            <td>
+            <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+                {props.diffecha}               
+            </p>
+            </td>    
             
             </table>
         </li>
