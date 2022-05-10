@@ -48,9 +48,10 @@ function useTodos() {
           break         
         case 'futuras':
           searchedTodos = todos.filter(todo => {
-            const todofuturas = (todo.fechaDate > fechaHoy)               
+            const todofuturas = (todo.fechaDate > fechaHoy)             
             return todofuturas
           })                
+          searchedTodos = searchedTodos.sort((a,b) => a.fechaDate -  b.fechaDate)
           break
         case 'hoy':
           searchedTodos = todos.filter(todo => {
@@ -78,7 +79,7 @@ function useTodos() {
           
       }
     
-      const addTodo =(text,fechaSeleccionada,prioridad,nota,fechaDate) => {  
+      const addTodo =(text,fechaSeleccionada,prioridad,nota,fechaDate,diaSemana,diffecha) => {  
         console.log('addTodo:', todos)     
         const newTodos =[...todos];
         newTodos.push({
@@ -87,7 +88,9 @@ function useTodos() {
           fechaSeleccionada,
           prioridad,
           nota,
-          fechaDate
+          fechaDate,
+          diaSemana,
+          diffecha
         })
 
         console.log('newTodos: ',newTodos)

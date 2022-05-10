@@ -43,7 +43,7 @@ function TodoItem(props) {
           <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
         
           <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
-                {props.fechaDate}               
+                {props.diaSemana}               
             </p>
       </div>
    
@@ -76,9 +76,15 @@ function TodoItem(props) {
 
     <span class="hidden sm:block ml-3">
       <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700
-         bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+         bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Prior 
       <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
                 {props.prioridad}               
+            </p>        
+      </button>
+      <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700
+         bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> Dias
+      <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+              <h2>  {props.diffecha}               </h2>
             </p>        
       </button>
       <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="mobile-menu-button" aria-expanded="false" aria-haspopup="true">
