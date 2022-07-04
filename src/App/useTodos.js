@@ -19,8 +19,7 @@ function useTodos() {
       const [ordenar,setOrdenar] = useState('hoy');
       
       
-      const completedTodos= todos.filter(todo => !!todo.completed).length;
-      const totalTodos = todos.length;
+      
       
       const hoy= new Date()
 
@@ -33,22 +32,36 @@ function useTodos() {
       const fechaHoy= ano+mes+dia
     
       let searchedTodos = [];
-      
+
+      const completedTodos= todos.filter(todo => !!todo.completed).length;
+      const totalTodos = todos.length;
+      const futuro = todos.filter(todo => todo.fechaDate > fechaHoy).length;
+      const pasado = todos.filter(todo => todo.fechaDate < fechaHoy-5).length;
+     
       if(!searchValue.length >= 1) {
+        
       switch (ordenar){
         case 'tarea':
       
           searchedTodos = todos.sort((a, b) => (a.text > b.text ? 1 : a.text < b.text ? -1 : 0))
+          
           break
         case 'prioridad':
           searchedTodos = todos.sort((a,b) => a.prioridad - b.prioridad)
           break
         case 'fecha':
           searchedTodos = todos.sort((a,b) => a.fechaDate -  b.fechaDate)
+          
+          searchedTodos = todos.filter(todo => {
+            const todoantes = (todo.fechaDate <= fechaHoy)             
+            return todoantes
+          })                
+
           break         
         case 'futuras':
           searchedTodos = todos.filter(todo => {
-            const todofuturas = (todo.fechaDate > fechaHoy)             
+            const todofuturas = (todo.fechaDate > fechaHoy) 
+            
             return todofuturas
           })                
           searchedTodos = searchedTodos.sort((a,b) => a.fechaDate -  b.fechaDate)
@@ -59,14 +72,33 @@ function useTodos() {
             return todofuturas
         })
         break
+        case 'paradas':
+          searchedTodos = todos.filter(todo => {
+            const todofuturas = (todo.completed)
+            return todofuturas
+        })
+        break
         case 'pendientes':
           searchedTodos = todos.filter(todo => {
-            const todofuturas = (!todo.completed)
+            const todofuturas = (!todo.completed && todo.fechaDate <= fechaHoy)
             return todofuturas
         })
           break
+        case 'vencidas':
+          searchedTodos = todos.filter(todo => {
+            const todofuturas = (todo.fechaDate < fechaHoy)
+            return todofuturas
+          })
+            break
+        case 'urgentes':
+          searchedTodos = todos.filter(todo => {
+            const todofuturas = (todo.urgente)
+            return todofuturas
+              })
+                break
         default:
           searchedTodos = todos
+          
       }
          
         
@@ -74,12 +106,13 @@ function useTodos() {
           searchedTodos = todos.filter(todo => {
             const todoText = todo.text.toLowerCase()
             const searchText = searchValue.toLowerCase()
+            
             return todoText.includes(searchText)
           })
           
       }
-    
-      const addTodo =(text,fechaSeleccionada,prioridad,nota,fechaDate,diaSemana,diffecha) => {  
+      
+      const addTodo =(text,fechaSeleccionada,prioridad,nota,fechaDate,diaSemana,fechadesde) => {  
         console.log('addTodo:', todos)     
         const newTodos =[...todos];
         newTodos.push({
@@ -90,7 +123,8 @@ function useTodos() {
           nota,
           fechaDate,
           diaSemana,
-          diffecha
+          fechadesde,
+          urgente: false
         })
 
         console.log('newTodos: ',newTodos)
@@ -104,6 +138,7 @@ function useTodos() {
 
         if(newTodos[todoIndex].completed === false){
             newTodos[todoIndex].completed = true;
+            newTodos[todoIndex].urgente = false;       
           } else {
               newTodos[todoIndex].completed = false;        
       }
@@ -119,7 +154,19 @@ function useTodos() {
         saveTodos(newTodos);    
       }
     
-      
+      const urgenteTodo =(text) => {
+        const todoIndex = todos.findIndex(todo => todo.text === text);
+    
+        const newTodos =[...todos];
+
+        if(newTodos[todoIndex].urgente === false){
+            newTodos[todoIndex].urgente = true;
+            newTodos[todoIndex].completed = false;
+          } else {
+              newTodos[todoIndex].urgente = false;        
+      }
+        saveTodos(newTodos);    
+      }
     
       React.useEffect(() => {
        
@@ -136,7 +183,8 @@ function useTodos() {
             setSearchValue,
             searchedTodos,
             completeTodo,
-            deleteTodo,
+            deleteTodo, 
+            urgenteTodo,          
             openModal,
             setOpenModal,
             openModalPrint,
@@ -144,8 +192,9 @@ function useTodos() {
             addTodo,
             setOrdenar,
             ordenar,
+            futuro,
+            pasado,
            
-            
         }
 }
 

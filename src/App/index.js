@@ -34,6 +34,7 @@ function App() {
     searchedTodos,
     completeTodo,
     deleteTodo,
+    urgenteTodo,
     openModal,
     setOpenModal,
     openModalPrint,
@@ -45,7 +46,9 @@ function App() {
     addTodo,  
     ordenar,
     setOrdenar,
-   
+    futuro,
+    pasado,
+    num,
    
   } = useTodos();
 
@@ -68,7 +71,8 @@ function App() {
                 <TodoCounter
                   totalTodos={totalTodos}
                   completedTodos={completedTodos}
-                  
+                  futuro={futuro}
+                  pasado={pasado}
                 />                     
 
                 <PrinterButton
@@ -102,10 +106,12 @@ function App() {
                           nota={todo.nota}
                           fechaDate={todo.fechaDate}
                           diaSemana = {todo.diaSemana}
-                          diffecha= {todo.diffecha}
+                          fechadesde= {todo.fechadesde}
                           completed={todo.completed}
+                          urgente={todo.urgente}
                           onComplete={() => completeTodo(todo.text)}
                           onDelete={() => deleteTodo(todo.text)}
+                          onUrgente={() => urgenteTodo(todo.text)}
                       />
                     )}
                   />
@@ -143,9 +149,10 @@ function App() {
                           
                           render={todo => (
 
-
+                            
                             <TodoPrint 
-                                                        
+                           
+                                num={num}   
                                 key={todo.text} 
                                 text={todo.text}
                                 fechaSeleccionada={todo.fechaSeleccionada}
@@ -153,14 +160,18 @@ function App() {
                                 nota={todo.nota}
                                 fechaDate={todo.fechaDate}
                                 diaSemana={todo.diaSemana}
-                                diffecha={todo.diffecha}
+                                fechadesde={todo.fechadesde}
                                 completed={todo.completed}
                                 onComplete={() => completeTodo(todo.text)}
                                 onDelete={() => deleteTodo(todo.text)}
+                                onUrgente={() => urgenteTodo(todo.text)}
+                              
                             />
                             
+                            
                           )}
-                        />        
+                        />   
+                             
                         <BotonesPrint
                             setOpenModalPrint={setOpenModalPrint}
                         />

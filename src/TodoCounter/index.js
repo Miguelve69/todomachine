@@ -3,10 +3,10 @@ import React from "react";
 import './TodoCounter.css';
 
 
-function TodoCounter({ totalTodos, completedTodos }) {
+function TodoCounter({ totalTodos, completedTodos, futuro, pasado }) {
     
    
-    
+   
        
     
     return (
@@ -15,9 +15,10 @@ function TodoCounter({ totalTodos, completedTodos }) {
             <h2 className="TodoCounter" >
              <tr>
                 <th className="px-4 py-3">TAREAS TOTALES: {totalTodos}</th>
-                <th className="px-4 py-3">TAREAS PENDIENTES: {totalTodos- completedTodos}</th>
-                <th className="px-4 py-3">TAREAS COMPLETADAS: {completedTodos}</th>
-                
+                <th className="px-4 py-3">TAREAS PENDIENTES: {totalTodos- completedTodos - futuro}</th>
+                <th className="px-4 py-3">TAREAS PARADAS: {completedTodos}</th>
+                <th className="px-4 py-3">TAREAS FUTURAS: {futuro}</th>
+                <th className="px-4 py-3">TAREAS CADUCADAS: {pasado}</th>
               </tr>
             
                

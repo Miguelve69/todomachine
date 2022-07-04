@@ -9,7 +9,7 @@ import './todoForm.css';
 function TodoForm({addTodo,setOpenModal}) {
     const [newTodoValue,setNewTodoValue] = React.useState('')
     const [fechaSeleccionada,setfechaSeleccionada] = useState(new Date());
-    const [prioridad, setPrioridad] = useState(1)
+    const [prioridad, setPrioridad] = useState(10)
     const [nota, setNota] = useState('')
     
     
@@ -21,7 +21,7 @@ function TodoForm({addTodo,setOpenModal}) {
     const onAdd = (event) => {
         event.preventDefault();
         
-
+/*
         const hoy= new Date()
 
       const mmhoy= hoy.getMonth() + 1
@@ -30,7 +30,7 @@ function TodoForm({addTodo,setOpenModal}) {
       const diahoy= ddhoy < 10 ? '0' + ddhoy : ddhoy;
       const anohoy= hoy.getFullYear()
       
-      
+  */    
         
      
 
@@ -69,13 +69,13 @@ function TodoForm({addTodo,setOpenModal}) {
         
          
          const fechadesde = new Date(anoS,mesS-1, diaS).getTime();
-         const fechahasta = new Date(anohoy,meshoy-1, diahoy).getTime();
+         //const fechahasta = new Date(anohoy,meshoy-1, diahoy).getTime();
         
-         const diff = fechadesde - fechahasta
-         var diffecha =diff/(1000 * 60 * 60 * 24);
+         //const diff = fechadesde - fechahasta
+         //var diffecha =diff/(1000 * 60 * 60 * 24);
             
 
-        addTodo(newTodoValue,fecha,prioridad,nota,fechaDate,nombreDia,diffecha)
+        addTodo(newTodoValue,fecha,prioridad,nota,fechaDate,nombreDia,fechadesde)
         setOpenModal(false)
     }
 
