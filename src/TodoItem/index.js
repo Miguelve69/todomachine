@@ -5,7 +5,26 @@ import './TodoItem.css'
 
 function TodoItem(props) {
 
+  const hoy= new Date()
 
+  const mmhoy= hoy.getMonth() + 1
+  const meshoy= mmhoy < 10 ? '0' + mmhoy : mmhoy;
+  const ddhoy= hoy.getDate()
+  const diahoy= ddhoy < 10 ? '0' + ddhoy : ddhoy;
+  const anohoy= hoy.getFullYear()
+/*
+  const fecha1 = props.fechaSeleccionada
+  const mm= fecha1.getMonth() + 1
+          const mesS= mm < 10 ? '0' + mm : mm;
+          const dd= fecha1.getDate()
+          const diaS= dd < 10 ? '0' + dd : dd;
+          const anoS= fecha1.getFullYear()
+
+  const fechatodo = new Date(anoS,mesS-1, diaS).getTime();*/
+  const fechahoy = new Date(anohoy,meshoy-1, diahoy).getTime();
+ 
+  const diff = props.fechadesde - fechahoy
+  var diffecha =diff/(1000 * 60 * 60 * 24);
       
     return(
 
@@ -15,7 +34,7 @@ function TodoItem(props) {
     <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
       <div class="flex flex-wrap">
         <h1 class="flex-auto text-lg font-semibold text-slate-900">
-          <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}> {props.text} </p>
+          <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'} || ${props.urgente && 'TodoItem-p--urgente'}`}> {props.text} </p>
         </h1>
       </div>
     </h2>    
@@ -42,7 +61,7 @@ function TodoItem(props) {
         
           <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
         
-          <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+          <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'} || ${props.urgente && 'TodoItem-p--urgente'} `}>
                 {props.diaSemana}               
             </p>
       </div>
@@ -76,15 +95,15 @@ function TodoItem(props) {
 
     <span class="hidden sm:block ml-3">
       <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700
-         bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Prior 
-      <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
+         bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={props.onUrgente} >Prior 
+      <p className={`TodoItem-p ${props.urgente && 'TodoItem-p--urgente'}`} >
                 {props.prioridad}               
             </p>        
       </button>
       <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700
          bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> Dias
-      <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
-              <h2>  {props.diffecha}               </h2>
+      <p className={`TodoItem-p ${props.urgente && 'TodoItem-p--urgente'}`}>
+              <h2>  {diffecha}               </h2>
             </p>        
       </button>
       <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="mobile-menu-button" aria-expanded="false" aria-haspopup="true">

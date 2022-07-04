@@ -19,11 +19,12 @@ function TodoOrdenar({ordenar, setOrdenar}) {
                 <option value="fecha">Fecha</option>
                 <option value="futuras">Futuras</option>
                 <option value="hoy">Hoy</option>
+                <option value="paradas">Paradas</option>
                 <option value="pendientes">Pendientes</option>
                 <option value="prioridad">Prioridad</option>
                 <option value="tarea">Tarea</option>
-                
-                
+                <option value="vencidas">Vencidas</option>
+                <option value="urgentes">Urgentes</option>
                 
             </select>            
             </h2>     

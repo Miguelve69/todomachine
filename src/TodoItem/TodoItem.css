@@ -11,6 +11,14 @@
 
 .TodoItem-p--complete {
     text-decoration: line-through;
+    
+}
+
+
+.TodoItem-p--urgente {
+    
+    color: yellow;
+    background-color: black;
 }
 
 .Icon{

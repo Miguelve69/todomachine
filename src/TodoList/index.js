@@ -16,11 +16,13 @@ function TodoList(props) {
             {(!props.loading && !props.totalTodos) && props.onEmptyTodos()}
 
             {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmptySearchResults(props.searchText)}
-
+            <ol start={1}> 
             {props.searchedTodos.map(renderFunc)}
-
+            </ol>
             <ul>
+                
                 {props.children}
+                
             </ul>
         </section>
         

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function BotonesPrint({setOpenModalPrint}) {
    
 
@@ -22,6 +21,8 @@ function BotonesPrint({setOpenModalPrint}) {
         >
             Cancelar
         </button>
+        
+        
         </div>
     )
 }
