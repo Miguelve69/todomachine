@@ -1,5 +1,5 @@
 .TodoItem {
-    background-color: #FAFAFA;
+    
     position: relative;
     display: flex;
     justify-content: center;
@@ -11,14 +11,6 @@
 
 .TodoItem-p--complete {
     text-decoration: line-through;
-    
-}
-
-
-.TodoItem-p--urgente {
-    
-    color: yellow;
-    background-color: black;
 }
 
 .Icon{
@@ -43,8 +35,15 @@
 table{
     border-collapse: collapse;
     border-spacing: 0;
+    color:black
 }
 th, td{
     padding: 10px 20px;
     border: 1px solid #000;
+}
+
+li {
+    
+    color: black;
+    left: 0;
 }
