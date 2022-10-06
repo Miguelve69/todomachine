@@ -1,4 +1,5 @@
 
+import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 import React, { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -22,6 +23,8 @@ function useTodos() {
       
       
       const hoy= new Date()
+      const fechavencidas = new Date() - 45
+      console.log ('fecha vencidas = ', fechavencidas)
 
       const mm= hoy.getMonth() + 1
       const mes= mm < 10 ? '0' + mm : mm;
@@ -29,7 +32,11 @@ function useTodos() {
       const dia= dd < 10 ? '0' + dd : dd;
       const ano= hoy.getFullYear()
       
-      const fechaHoy= ano+mes+dia
+      const fechaHoy= ano.toString()+ mes.toString()+dia.toString()
+      const fechahoynum= Number(fechaHoy)-100
+      console.log('hoy es dia: ',fechaHoy);
+      console.log('hoy es en num; ',fechahoynum);
+
     
       let searchedTodos = [];
 
@@ -73,6 +80,7 @@ function useTodos() {
         })
         break
         case 'paradas':
+          searchedTodos = todos.sort((a,b) => a.fechaDate -  b.fechaDate)
           searchedTodos = todos.filter(todo => {
             const todofuturas = (todo.completed)
             return todofuturas
@@ -85,12 +93,14 @@ function useTodos() {
         })
           break
         case 'vencidas':
+          searchedTodos = todos.sort((a,b) => a.fechaDate -  b.fechaDate)
           searchedTodos = todos.filter(todo => {
-            const todofuturas = (todo.fechaDate < fechaHoy)
+            const todofuturas = (todo.fechaDate < fechahoynum)
             return todofuturas
           })
             break
         case 'urgentes':
+          searchedTodos = todos.sort((a,b) => a.fechaDate -  b.fechaDate)
           searchedTodos = todos.filter(todo => {
             const todofuturas = (todo.urgente)
             return todofuturas
@@ -130,7 +140,7 @@ function useTodos() {
         console.log('newTodos: ',newTodos)
         saveTodos(newTodos);    
       }
-    
+
       const completeTodo =(text) => {
         const todoIndex = todos.findIndex(todo => todo.text === text);
     

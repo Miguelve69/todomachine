@@ -1,3 +1,4 @@
+
 import React from "react";
 import './PrinterButton.css';
 
@@ -7,7 +8,7 @@ function PrinterButton(props) {
         props.setOpenModalPrint(prevState => !prevState);
     }
 
-    
+   
 
     return(
         <div>
@@ -21,6 +22,8 @@ function PrinterButton(props) {
                     2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                 </svg>
         </button>
+
+       
         </div>
     )
 }

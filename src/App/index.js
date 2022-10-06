@@ -73,12 +73,16 @@ function App() {
                   completedTodos={completedTodos}
                   futuro={futuro}
                   pasado={pasado}
-                />                     
+                />    
 
+               
                 <PrinterButton
+                 
                   setOpenModalPrint={setOpenModalPrint}
+                  searchedTodos={searchedTodos}
+                 
+                  />  
                   
-                  />                      
                 
               </TodoHeader>
 
